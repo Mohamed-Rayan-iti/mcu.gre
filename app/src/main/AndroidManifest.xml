@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.mcu">
+
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+        android:icon="@drawable/slash_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/slash_logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Mcu">
+        <activity android:name=".FingerprintActivity"></activity>
+        <activity android:name=".LocationOwner.homeData.retailer_ip_settingActivity" />
+        <activity android:name=".aboutUs" />
+        <activity android:name=".LocationOwner.retailer_dashboard_Activity" />
+        <activity android:name=".password_success_Activity" />
+        <activity android:name=".new_password_Activity" />
+        <activity android:name=".forgetpassword_Activity" />
+        <activity
+            android:name=".sign_up_Activity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".splash_Activity"
+            android:label="@string/multiple_choice_user">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".login_Activity"
+            android:label="@string/multiple_choice_user">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,120 @@
+<resources>
+    <!-- Shared strings  -->
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="login">Login</string>
+
+    <!-- Splash screen strings  -->
+    <string name="welcome">Welcome ! </string>
+    <string name="to">to</string>
+    <string name="multiple_choice_user">Multiple choice user</string>
+
+    <!-- Login screen strings  -->
+    <string name="welcome_back">Welcome Back , </string>
+    <string name="sign_in_to_continue">Sign In to continue</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forget_password_q">forget password?</string>
+    <string name="sign_up">SIGN UP!</string>
+    <string name="attention">Attention!</string>
+    <string name="password_must_be_8_digits">Password must be 8 digits at least</string>
+    <string name="password_is_required">Password is required</string>
+    <string name="invalid_email_address">Invalid email address</string>
+    <string name="email_is_required">Email is required</string>
+
+    <!-- Signup screen strings  -->
+    <string name="w_e_l_c_o_m_e">w e l c o m e </string>
+    <string name="sign_up_to_control_your_wi_fi">Sign Up to control your wi_fi</string>
+    <string name="phone_number">Phone number</string>
+    <string name="id_manager">ID manager</string>
+    <string name="sign_up2">SIGN UP</string>
+    <string name="already_have_an_account_login">Already have an account? login</string>
+    <string name="invalid_id">ID Manager must be 14 digits</string>
+    <string name="id_is_required">ID Manager is required</string>
+    <string name="phone_number_must_be_11_digits"><![CDATA[Phone Number must be 11 digits & starts with 010, 011, 012 or 015]]></string>
+    <string name="phone_is_required">Phone is required</string>
+    <string name="password_not_like_confirm_password">Password not like Confirm Password !</string>
+    <string name="confirm_password_is_required">Confirm Password is required</string>
+    <string name="Email_must_be_like">Email must be like this example</string>
+
+
+    <!-- Forget password screen strings  -->
+    <string name="forget_password">forget password </string>
+    <string name="provide_your_account_s_email_for_which_you_want_to_reset_your_password">Provide your account\'s email for which you want to reset your password</string>
+    <string name="send">Send</string>
+    <string name="edit_email">Edit email</string>
+    <string name="resend">Resend</string>
+    <string name="activation_code">Activation Code</string>
+    <string name="ok">OK</string>
+
+
+    <string name="create_a_new_password">Create a new password </string>
+    <string name="your_identity_has_been_verified_set_your_new_password">your identity has been verified set your new password</string>
+    <string name="new_password">New Password</string>
+    <string name="save">Save</string>
+
+    <!-- Password updated screen strings  -->
+    <string name="password_updated">Password Updated </string>
+    <string name="your_password_has_been_updated">Your password has been updated!</string>
+
+    <!-- Costing screen strings  -->
+    <string name="costing">Costing</string>
+    <string name="total_hours">Total Hours</string>
+    <string name="price_per_hour">Price Per Hour</string>
+    <string name="cost">Cost</string>
+    <string name="total_cost">Total Cost</string>
+
+    <!-- Setting screen strings  -->
+    <string name="language">Language</string>
+    <string name="arabic">Arabic</string>
+    <string name="themes">Themes</string>
+    <string name="security">Security</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="fingerprint_lock">Fingerprint lock</string>
+    <string name="notifications">Notifications</string>
+    <string name="allow_notifications">Allow notifications</string>
+    <string name="title_fingerprint">One-touch sign in</string>
+    <string name="desc_fingerprint">Please place your fingertip on the scanner to verify your identity</string>
+    <string name="note">(Fingerprint sign in makes your app login much faster. Your device should have at least one fingerprint registered in device settings)</string>
+    <string name="title_activity_home">Fingerprint lock</string>
+    <string name="allowed_notification">You are allowed the notification.</string>
+    <string name="channel_name3">Test Channel 3</string>
+    <string name="channel_description3">This is a test channel at level a Emergency level, where lights, sound, and vibration are active.</string>
+
+    <!-- Profile screen strings  -->
+    <string name="hello">Hello,</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="about_us">About Us</string>
+    <string name="log_out">Log Out</string>
+
+    <!-- Fragment screen strings  -->
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+    <string name="setting">Setting</string>
+    <string name="costs">Costs</string>
+
+    <!-- Control screen strings  -->
+    <string name="control">Control</string>
+    <string name="speed">Speed by megabyte</string>
+    <string name="time">Time by hours</string>
+    <string name="start">Start</string>
+    <string name="time_left">Time left</string>
+
+    <!-- About Us Screen strings -->
+    <string name="project">About Project</string>
+    <string name="developers">About Developers</string>
+    <string name="mostafa_mahmoud">Mostafa Mahmoud</string>
+    <string name="doaa_ahmed">Doaa Ahmed</string>
+    <string name="aya_karm">Aya Karm</string>
+    <string name="mariam_salah">Mariam Salah</string>
+    <string name="karem_salah_eldin">Karem Salah Eldin</string>
+    <string name="an_application_that_takes_complete_control_of_wireless_devices_in_public_places_through_the_branch_manager_or_the_responsible_person">An application that takes complete control of wireless devices in public places through the branch manager or the responsible person.</string>
+    <string name="ic_back">drawable/ic_back</string>
+
+
+    <string name="app_name">MCU</string>
+    <string name="todo">TODO</string>
+    <string name="ip_setting">IP Setting</string>
+
+</resources>

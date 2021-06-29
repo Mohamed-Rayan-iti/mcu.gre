@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "49753323122",
+    "firebase_url": "https://mostafa-a0442.firebaseio.com",
+    "project_id": "mostafa-a0442",
+    "storage_bucket": "mostafa-a0442.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49753323122:android:fba3d573ade4921aa934eb",
+        "android_client_info": {
+          "package_name": "com.example.mcu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "49753323122-oi9fhdom6k4hpme81rhffomf05ghrisj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5mjXN2rEfRpl0hQ8z80X0C56QOxm0a6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "49753323122-oi9fhdom6k4hpme81rhffomf05ghrisj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

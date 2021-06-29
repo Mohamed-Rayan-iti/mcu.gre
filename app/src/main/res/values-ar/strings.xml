@@ -1,0 +1,120 @@
+<resources>
+    <!-- Shared strings  -->
+    <string name="e_mail">البريد الالكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="confirm_password">تاكيد كلمة المرور</string>
+    <string name="login">تسجيل دخول</string>
+
+    <!-- Splash screen strings  -->
+    <string name="welcome">Welcome !</string>
+    <string name="to">to</string>
+    <string name="multiple_choice_user">Multiple choice user</string>
+
+    <!-- Login screen strings  -->
+    <string name="welcome_back">مرحباً بك،</string>
+    <string name="sign_in_to_continue">سجل دخول للمتابعه</string>
+    <string name="remember_me">تذكرني</string>
+    <string name="forget_password_q">نسيت كلمة المرور؟</string>
+    <string name="sign_up">إنشاء حساب جديد!</string>
+    <string name="attention">انتبه!</string>
+    <string name="password_must_be_8_digits">كلمة المرور لابد ان تكون 8 حروف على الاقل</string>
+    <string name="password_is_required">كلمة المرور مطلوبة</string>
+    <string name="invalid_email_address">البريد الالكتروني غير صحيح</string>
+    <string name="email_is_required">البريد الالكتروني مطلوب</string>
+
+    <!-- Signup screen strings  -->
+    <string name="w_e_l_c_o_m_e">مـرحـبـاً</string>
+    <string name="sign_up_to_control_your_wi_fi">سجل حساب للتحكم فى شبكتك</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="id_manager">الرقم القومي</string>
+    <string name="sign_up2">إنشاء الحساب</string>
+    <string name="already_have_an_account_login">لدي بالفعل حساب؟ تسجيل دخول</string>
+    <string name="invalid_id">الرقم القومي لابد ان يكون 14 رقم</string>
+    <string name="id_is_required">الرقم القومي مطلوب</string>
+    <string name="phone_number_must_be_11_digits"><![CDATA[رقم الهاتف لابد ان يكون 11 رقم و يبدا ب 010، 011، 012 او 015]]></string>
+    <string name="phone_is_required">رقم الهاتف مطلوب</string>
+    <string name="password_not_like_confirm_password">كلمة المرور غير متطابقة مع تاكيد كلمة المرور!</string>
+    <string name="confirm_password_is_required">تاكيد كلمة المرور مطلوبة</string>
+    <string name="Email_must_be_like">البريد الالكتروني لابد ان يكون مثل هذا المثال</string>
+
+
+    <!-- Forget password screen strings  -->
+    <string name="forget_password">نسيت كلمة المرور </string>
+    <string name="provide_your_account_s_email_for_which_you_want_to_reset_your_password">أدخل البريد الإلكتروني لحسابك الذي تريد إعادة تعيين كلمة المرور الخاصة به</string>
+    <string name="send">ارسال</string>
+    <string name="edit_email">تعديل البريد الالكتروني</string>
+    <string name="resend">اعادة ارسال</string>
+    <string name="activation_code">كود التفعيل</string>
+    <string name="ok">أوك</string>
+
+
+    <string name="create_a_new_password">إنشاء كلمة مرور جديدة </string>
+    <string name="your_identity_has_been_verified_set_your_new_password">تم التحقق من هويتك قم بتعيين كلمة المرور الجديدة الخاصة بك</string>
+    <string name="new_password">كلمة مرور جديدة</string>
+    <string name="save">حفظ</string>
+
+    <!-- Password updated screen strings  -->
+    <string name="password_updated">تعدلت كلمة المرور </string>
+    <string name="your_password_has_been_updated">تم تعديل كلمة المرور الخاص بك بنجاح!</string>
+
+    <!-- Costing screen strings  -->
+    <string name="costing">التكاليف</string>
+    <string name="total_hours">أجمالي الساعات</string>
+    <string name="price_per_hour">سعر الساعة الواحده</string>
+    <string name="cost">التكلفه</string>
+    <string name="total_cost">أجمالي التكلفه</string>
+
+    <!-- Setting screen strings  -->
+    <string name="language">اللغة</string>
+    <string name="arabic">عربي</string>
+    <string name="themes">الاوضاع</string>
+    <string name="dark_mode">الوضع المظلم</string>
+    <string name="security">الأمان</string>
+    <string name="fingerprint_lock">قفل بصمة الاصبع</string>
+    <string name="notifications">الإشعارات</string>
+    <string name="allow_notifications">تفعيل الإشعارات</string>
+    <string name="title_fingerprint">تسجيل الدخول بلمسة واحدة</string>
+    <string name="desc_fingerprint">يرجى وضع أنملة إصبعك على الماسح للتحقق من هويتك</string>
+    <string name="note">تسجيل الدخول ببصمة الإصبع يجعل تسجيل الدخول إلى التطبيق أسرع بكثير. يجب أن يحتوي جهازك على بصمة إصبع واحدة على الأقل مسجلة في إعدادات الجهاز</string>
+    <string name="title_activity_home">قفل بصمة الأصبع</string>
+    <string name="allowed_notification">انك قمت بتفعيل الإشعارات.</string>
+    <string name="channel_name3">Test Channel 3</string>
+    <string name="channel_description3">This is a test channel at level a Emergency level, where lights, sound, and vibration are active.</string>
+
+    <!-- Profile screen strings  -->
+    <string name="hello">مرحباً,</string>
+    <string name="contact_us">تواصل معنا</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="about_us">معلومات عنا</string>
+    <string name="log_out">تسجيل خروج</string>
+
+    <!-- Fragment screen strings  -->
+    <string name="profile">حسابي</string>
+    <string name="home">الرئيسية</string>
+    <string name="setting">الإعدادات</string>
+    <string name="costs">التكاليف</string>
+
+    <!-- Control screen strings  -->
+    <string name="control">التحكم</string>
+    <string name="speed">السرعة بالميجابايت</string>
+    <string name="time">الوفت بالساعة</string>
+    <string name="start">ابدأ</string>
+    <string name="time_left">الوقت المتبقي</string>
+
+    <!-- About Us Screen strings -->
+    <string name="project">عن المشروع</string>
+    <string name="developers">عن المطورين</string>
+    <string name="mostafa_mahmoud">مصطفى محمود</string>
+    <string name="doaa_ahmed">دعاء أحمد</string>
+    <string name="aya_karm">أية كرم</string>
+    <string name="mariam_salah">مريم صلاح</string>
+    <string name="karem_salah_eldin">كريم صلاح الدين</string>
+    <string name="an_application_that_takes_complete_control_of_wireless_devices_in_public_places_through_the_branch_manager_or_the_responsible_person">تطبيق يتحكم بشكل كامل في الأجهزة اللاسلكية في الأماكن العامة من خلال مدير الفرع أو الشخص المسؤول</string>
+    <string name="ic_back">drawable/ic_back</string>
+
+    <string name="app_name">MCU</string>
+    <string name="todo">TODO</string>
+    <string name="ip_setting">IP Setting</string>
+
+
+</resources>

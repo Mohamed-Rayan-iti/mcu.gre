@@ -83,9 +83,9 @@ public class homeAdepter extends RecyclerView.Adapter<homeAdepter.ViewHolder> {
     void showAlert(String ip) {
         new AlertDialog.Builder(this.context)
                 .setTitle(ip)
-                .setMessage("Are you sure you want to control this IP?")
+                .setMessage(R.string.are_you_sure_you_want_to_control_this_ip)
                 .setIcon(R.drawable.ic_attention)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent =new Intent(context,retailer_ip_settingActivity.class);
@@ -93,7 +93,7 @@ public class homeAdepter extends RecyclerView.Adapter<homeAdepter.ViewHolder> {
                         context.startActivity(intent);
                     }
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton(R.string.no, null)
                 .create().show();
     }
 }

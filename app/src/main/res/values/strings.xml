@@ -4,6 +4,8 @@
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="login">Login</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <!-- Splash screen strings  -->
     <string name="welcome">Welcome ! </string>
@@ -46,6 +48,10 @@
     <string name="resend">Resend</string>
     <string name="activation_code">Activation Code</string>
     <string name="ok">OK</string>
+    <string name="Activation_code_has_been_sent_check_your_email">Activation code has been sent check your email</string>
+    <string name="this_email_is_not_exist">this email is not exist</string>
+    <string name="activation_code_has_been_resent">Activation code has been resent</string>
+    <string name="invalid_activation_code">Invalid Activation Code</string>
 
 
     <string name="create_a_new_password">Create a new password </string>
@@ -56,6 +62,9 @@
     <!-- Password updated screen strings  -->
     <string name="password_updated">Password Updated </string>
     <string name="your_password_has_been_updated">Your password has been updated!</string>
+
+    <!-- Home screen strings -->
+    <string name="are_you_sure_you_want_to_control_this_ip">Are you sure you want to control this IP?</string>
 
     <!-- Costing screen strings  -->
     <string name="costing">Costing</string>
@@ -80,6 +89,11 @@
     <string name="allowed_notification">You are allowed the notification.</string>
     <string name="channel_name3">Test Channel 3</string>
     <string name="channel_description3">This is a test channel at level a Emergency level, where lights, sound, and vibration are active.</string>
+    <string name="your_device_does_not_have_a_fingerprint_sensor">Your Device does not have a Fingerprint Sensor</string>
+    <string name="fingerprint_authentication_permission_not_enabled">Fingerprint authentication permission not enabled</string>
+    <string name="register_at_least_one_fingerprint_in_settings">Register at least one fingerprint in Settings</string>
+    <string name="lock_screen_security_not_enabled_in_settings">Lock screen security not enabled in Settings</string>
+
 
     <!-- Profile screen strings  -->
     <string name="hello">Hello,</string>
@@ -87,6 +101,8 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="about_us">About Us</string>
     <string name="log_out">Log Out</string>
+    <string name="logout">Logout</string>
+    <string name="would_you_like_to_logout">Would you like to logout?</string>
 
     <!-- Fragment screen strings  -->
     <string name="profile">Profile</string>
@@ -100,6 +116,9 @@
     <string name="time">Time by hours</string>
     <string name="start">Start</string>
     <string name="time_left">Time left</string>
+    <string name="total_hours_mustnt_be_empty">Total hours mustn\'t be empty</string>
+    <string name="price_per_hour_mustnt_be_empty">Price per hour mustn\'t be empty</string>
+
 
     <!-- About Us Screen strings -->
     <string name="project">About Project</string>

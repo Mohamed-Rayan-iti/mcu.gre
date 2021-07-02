@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -27,16 +26,13 @@ import java.util.List;
 
 
 public class retailer_homefragment extends Fragment {
-    private RecyclerView recyclerView;
     private ProgressBar progressBar;
 
-
-    private ImageView homeicon;
 
     private homeAdepter adepter;
     private List<ipandordermodel> list;
 
-    private FirebaseFirestore firestore;
+    private FirebaseFirestore fireStore;
 
 
     @Override
@@ -52,64 +48,43 @@ public class retailer_homefragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //hooks
-        recyclerView = view.findViewById(R.id.recyclerview_home);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_home);
         progressBar = view.findViewById(R.id.progressbar_home);
-        homeicon = view.findViewById(R.id.icon_ip_setting);
-        firestore = FirebaseFirestore.getInstance();
-
+        fireStore = FirebaseFirestore.getInstance();
 
         // to array data
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         list = new ArrayList<>();
-        adepter = new homeAdepter(list,getActivity());
+        adepter = new homeAdepter(list, getActivity());
         recyclerView.setAdapter(adepter);
-        getdata();
-
-
+        getData();
     }
 
 
-    private void getdata() {
+    private void getData() {
 
         progressBar.setVisibility(View.VISIBLE);
-
-
-        firestore.collection("IP and order number")
+        fireStore.collection("IP and order number")
                 .orderBy("time", Query.Direction.DESCENDING)
                 .addSnapshotListener((value, error) -> {
-
                     if (error == null) {
-
-
                         if (value == null) {
                             progressBar.setVisibility(View.GONE);
                             Toast.makeText(getActivity(), "value is null !  ", Toast.LENGTH_SHORT).show();
-
-
                         } else {
-
                             for (DocumentChange documentChange : value.getDocumentChanges()) {
-
                                 ipandordermodel model = documentChange.getDocument().toObject(ipandordermodel.class);
-
                                 list.add(model);
-
-
                                 adepter.notifyDataSetChanged();
                             }
                             progressBar.setVisibility(View.GONE);
-
                         }
-
-
                     } else {
                         progressBar.setVisibility(View.GONE);
                         Log.e("error", error.toString());
                         Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
 }

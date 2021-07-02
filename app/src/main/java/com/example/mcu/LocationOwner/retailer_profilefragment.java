@@ -1,5 +1,6 @@
 package com.example.mcu.LocationOwner;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -7,7 +8,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +25,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -37,11 +39,10 @@ import static android.content.Context.MODE_PRIVATE;
 public class retailer_profilefragment extends Fragment {
 
     private TextView username;
-    private CircleImageView userimage;
-    private Button btn_about;
+    private CircleImageView userImage;
     private ProgressBar progressBar;
     private FirebaseAuth firebaseAuth;
-    private FirebaseFirestore firestore;
+    private FirebaseFirestore fireStore;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -95,60 +96,48 @@ public class retailer_profilefragment extends Fragment {
     public void onViewCreated ( @NonNull View view, @Nullable Bundle savedInstanceState ) {
         super.onViewCreated ( view, savedInstanceState );
         username = view.findViewById ( R.id.user_name_prof );
-        userimage = view.findViewById ( R.id.profile_image );
+        userImage = view.findViewById ( R.id.profile_image );
         progressBar = view.findViewById ( R.id.progressbar_profile );
 
         firebaseAuth=FirebaseAuth.getInstance ();
-        firestore=FirebaseFirestore.getInstance ();
-        getuserdata ();
+        fireStore=FirebaseFirestore.getInstance ();
+        getUserData ();
 
 
 
         // link from profile to contact us
-        view.findViewById ( R.id.btn_contact_us ).setOnClickListener ( v -> {
-            sendmail();
-
-        } );
+        view.findViewById ( R.id.btn_contact_us ).setOnClickListener ( v -> sendmail());
 
 
 
         // link from profile to privacy
-        view.findViewById ( R.id.btn_privacy ).setOnClickListener ( v -> {
-            openprivacy();
-
-        } );
+        view.findViewById ( R.id.btn_privacy ).setOnClickListener ( v -> openPrivacy());
 
 
           // link from profile to about us
-        view.findViewById ( R.id.btn_about_us ).setOnClickListener ( new View.OnClickListener ( ) {
-            @Override
-            public void onClick ( View v ) {
+        view.findViewById ( R.id.btn_about_us ).setOnClickListener (v -> {
 
-                Intent intent = new Intent ( new Intent ( retailer_profilefragment.this.getActivity ( ), aboutUs.class ) );
-                retailer_profilefragment.this.startActivity ( intent );
+            Intent intent = new Intent ( new Intent ( retailer_profilefragment.this.getActivity ( ), aboutUs.class ) );
+            retailer_profilefragment.this.startActivity ( intent );
 
 
-            }
-        } );
+        });
 
 
           // link from profile to log out
-        view.findViewById ( R.id.btn_log_out ).setOnClickListener ( v -> {
-            gologout();
-
-        } );
+        view.findViewById ( R.id.btn_log_out ).setOnClickListener ( v -> goLogOut());
 
 
     }
 
-    private void gologout () {
+    private void goLogOut () {
 
         if (getActivity ()!=null)
 
         new AlertDialog.Builder(getActivity ())
-                .setTitle("Logout")
-                .setMessage("Would you like to logout?")
-                .setPositiveButton("Yes", ( dialog, which ) -> {
+                .setTitle(R.string.logout)
+                .setMessage(R.string.would_you_like_to_logout)
+                .setPositiveButton(R.string.yes, (dialog, which ) -> {
 
                     // logout
                     getActivity ().getSharedPreferences ( "Login", MODE_PRIVATE )
@@ -161,25 +150,25 @@ public class retailer_profilefragment extends Fragment {
                     getActivity().finish();
                 } )
 
-                .setNegativeButton("No", ( dialog, which ) -> {
+                .setNegativeButton(R.string.no, (dialog, which ) -> {
                     // user doesn't want to logout
                 } )
                .create ().show();
     }
 
-    private void openprivacy () {
+    private void openPrivacy () {
         Uri uri = Uri.parse("https://m-c-u.flycricket.io/privacy.html"); // missing 'http://' will cause crashed
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
     }
 
+    @SuppressLint("IntentReset")
     private void sendmail () {
-        String[] TO = {"mostafazam7@gmail.com"};
+        String[] TO = {"mcu.mis.2021@gmail.com"};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setData( Uri.parse("mailto:"));
         emailIntent.setType("text/plain");
-
-
+        
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
         emailIntent.putExtra(Intent.EXTRA_TEXT, "");
@@ -194,7 +183,7 @@ public class retailer_profilefragment extends Fragment {
 
 
 
-    private void getuserdata(){
+    private void getUserData(){
 
         if (getActivity ()!= null){
 
@@ -204,7 +193,7 @@ public class retailer_profilefragment extends Fragment {
 
                 String uID = firebaseAuth.getCurrentUser ().getUid ();
 
-                DocumentReference db =firestore.collection ( "Users" ).document (uID);
+                DocumentReference db =fireStore.collection ( "Users" ).document (uID);
 
                 db.get ().addOnCompleteListener ( task -> {
 
@@ -215,8 +204,6 @@ public class retailer_profilefragment extends Fragment {
                         assert snapshot != null;
                         String mailDB= snapshot.getString ( "E_mail" );
                         String imageDB= snapshot.getString ( "image" );
-                        String idDB= snapshot.getString ( "ID" );
-
 
 
                         username.setText ( mailDB );
@@ -231,7 +218,7 @@ public class retailer_profilefragment extends Fragment {
                             Glide.with(getActivity ())
                                     .load(imageDB)
                                     .placeholder(R.drawable.ic_camera)
-                                    .into (  userimage);
+                                    .into (userImage);
                         }else {
                             progressBar.setVisibility ( View.GONE );
                         }
@@ -241,7 +228,7 @@ public class retailer_profilefragment extends Fragment {
                     }
                     else {
                         progressBar.setVisibility ( View.GONE );
-                        Toast.makeText ( getActivity (),"Error in task \n"+task.getException ().getMessage (),Toast.LENGTH_SHORT ).show ();
+                        Toast.makeText ( getActivity (),"Error in task \n"+ Objects.requireNonNull(task.getException()).getMessage(),Toast.LENGTH_SHORT ).show();
 
                     }
                 } );

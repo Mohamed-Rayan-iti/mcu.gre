@@ -1,8 +1,9 @@
-   package com.example.mcu.LocationOwner;
+package com.example.mcu.LocationOwner;
 
 import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -23,7 +24,7 @@ public class retailer_costfragment extends Fragment {
     View parentHolder;
 
     Button calc;
-    EditText num1 , num2 , res;
+    EditText totalHours, pricePerHour, totalCost;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -74,26 +75,49 @@ public class retailer_costfragment extends Fragment {
         // Inflate the layout for this fragment
         parentHolder = inflater.inflate(R.layout.retailer_costfragment, container, false);
 
-        calc = (Button) parentHolder.findViewById(R.id.btn_cost);
-        num1 = (EditText) parentHolder.findViewById(R.id.total_hours);
-        num2 = (EditText) parentHolder.findViewById(R.id.price_per_hour);
-        res = (EditText) parentHolder.findViewById(R.id.total_cost);
+        calc = parentHolder.findViewById(R.id.btn_cost);
+        totalHours = parentHolder.findViewById(R.id.total_hours);
+        pricePerHour = parentHolder.findViewById(R.id.price_per_hour);
+        totalCost = parentHolder.findViewById(R.id.total_cost);
 
 
-        calc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int Number1=Integer.parseInt(num1.getText().toString());
-                int Number2=Integer.parseInt(num2.getText().toString());
-                int result=Number1* Number2;
-                res.setText(String.valueOf(result));
-            }
+        calc.setOnClickListener(view -> {
+
+            inputValid();
         });
-
-
 
         return parentHolder;
     }
 
+    private void inputValid() {
+        String inputTotalHours = totalHours.getText().toString();
+        String inputPricePerHour = pricePerHour.getText().toString();
 
+        if (inputTotalHours.isEmpty()) {
+            // Alert
+            showAlert(getString(R.string.total_hours_mustnt_be_empty));
+            return;
+        }
+        if (inputPricePerHour.isEmpty()) {
+            // Alert
+            showAlert(getString(R.string.price_per_hour_mustnt_be_empty));
+            return;
+        }
+
+        calcTotalCost(Integer.parseInt(inputTotalHours), Integer.parseInt(inputPricePerHour));
+
+    }
+
+    private void calcTotalCost(int inputTotalHours, int inputPricePerHour) {
+        totalCost.setText(String.valueOf(inputTotalHours * inputPricePerHour));
+    }
+
+    void showAlert(String msg) {
+        new AlertDialog.Builder(retailer_costfragment.this.referenceActivity)
+                .setTitle(R.string.attention)
+                .setMessage(msg)
+                .setIcon(R.drawable.ic_attention)
+                .setPositiveButton(R.string.ok, null)
+                .create().show();
+    }
 }

@@ -1,11 +1,7 @@
 package com.example.mcu;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -13,15 +9,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.SignInMethodQueryResult;
 
 import java.util.Objects;
 import java.util.Properties;
@@ -50,7 +42,7 @@ public class forgetpassword_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgetpassword_);
+        setContentView(R.layout.activity_forgetpassword);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -74,8 +66,7 @@ public class forgetpassword_Activity extends AppCompatActivity {
 
     private int createRandomCode() {
         Random random = new Random();
-        int confirmEmailCode = random.nextInt(999999 - 100001 + 1) + 100001;
-        confirmCode = confirmEmailCode;
+        confirmCode = random.nextInt(999999 - 100001 + 1) + 100001;
         return confirmCode;
     }
 
@@ -119,7 +110,7 @@ public class forgetpassword_Activity extends AppCompatActivity {
             }
         }).start();
 
-        Toast.makeText(forgetpassword_Activity.this, "Activation code has been sent \n check your email", Toast.LENGTH_LONG).show();
+        Toast.makeText(forgetpassword_Activity.this, getString(R.string.Activation_code_has_been_sent_check_your_email), Toast.LENGTH_LONG).show();
 
     }
 
@@ -129,7 +120,7 @@ public class forgetpassword_Activity extends AppCompatActivity {
                     .addOnCompleteListener(task -> {
                         boolean isNewUser = Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getSignInMethods()).isEmpty();
                         if (isNewUser) {
-                            showAlert("this email is not exist");
+                            showAlert(getString(R.string.this_email_is_not_exist));
                         } else {
                             sentEmailCode();
                             btnSend.setVisibility(View.INVISIBLE);
@@ -146,10 +137,10 @@ public class forgetpassword_Activity extends AppCompatActivity {
 
     void showAlert(String msg) {
         new AlertDialog.Builder(this)
-                .setTitle("attention!")
+                .setTitle(R.string.attention)
                 .setMessage(msg)
                 .setIcon(R.drawable.ic_attention)
-                .setPositiveButton("Okay!", null)
+                .setPositiveButton(R.string.ok, null)
                 .create().show();
     }
 
@@ -157,13 +148,13 @@ public class forgetpassword_Activity extends AppCompatActivity {
         email = e_mail.getText().toString().trim();
             if (email.isEmpty()) {
                 e_mail.requestFocus();
-                // change to Alert
-                showAlert("Email is required");
+                // Alert
+                showAlert(getString(R.string.email_is_required));
                 return false;
             } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 e_mail.requestFocus();
-                // change to Alert
-                showAlert("Invalid Email address \nEmail must be like example@company.com");
+                // Alert
+                showAlert(getString(R.string.Email_must_be_like)+"\n"+"example@company.com");
                 return false;
             } else {
                 return true;
@@ -194,7 +185,6 @@ public class forgetpassword_Activity extends AppCompatActivity {
 
                 Session session = Session.getInstance(properties,
                         new javax.mail.Authenticator() {
-
                             protected PasswordAuthentication getPasswordAuthentication() {
                                 return new PasswordAuthentication(username, password);
                             }
@@ -218,7 +208,7 @@ public class forgetpassword_Activity extends AppCompatActivity {
             }
         }).start();
 
-        Toast.makeText(this, "Activation code has been Resent", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.activation_code_has_been_resent), Toast.LENGTH_LONG).show();
     }
 
     public void btnConfirmEmailCode(View view) {
@@ -228,7 +218,7 @@ public class forgetpassword_Activity extends AppCompatActivity {
             startActivity(intent);
 
         } else {
-            showAlert("Invalid Activation Code");
+            showAlert(getString(R.string.invalid_activation_code));
         }
     }
 }

@@ -34,6 +34,25 @@ public class splash_Activity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN );
         setContentView(R.layout.activity_splash);
 
+
+        String language= getSharedPreferences ( "Language", MODE_PRIVATE )
+                .getString("lang", "en");
+        //Configuration Language
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration configuration= new Configuration();
+        configuration.locale=locale;
+        getResources().updateConfiguration(configuration,getResources().getDisplayMetrics() );
+
+
+        boolean isDark= getSharedPreferences ( "Theme", MODE_PRIVATE )
+                .getBoolean("selectedTheme", false);
+        if (isDark)
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        else
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+
         //animation
         up_animation = AnimationUtils.loadAnimation(this,R.anim.up_animation);
         text_animation = AnimationUtils.loadAnimation(this,R.anim.up_animation);
@@ -60,21 +79,12 @@ public class splash_Activity extends AppCompatActivity {
 
         //animation for login screen
 
-
          Pair[] Pairs = new Pair[2];
          Pairs[0] = new Pair<View,String>(splash_logo,"logo_image");
          Pairs[1] = new Pair<View,String>(welcome,"logo_text");
 
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(splash_Activity.this, Pairs);
-            startActivity(intent,options.toBundle());
-
-
-            //12/8
-
-
-        }
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(splash_Activity.this, Pairs);
+        startActivity(intent,options.toBundle());
 
         finish();
     }

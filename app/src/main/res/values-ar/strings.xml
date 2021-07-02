@@ -4,6 +4,9 @@
     <string name="password">كلمة المرور</string>
     <string name="confirm_password">تاكيد كلمة المرور</string>
     <string name="login">تسجيل دخول</string>
+    <string name="ok">أوك</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
 
     <!-- Splash screen strings  -->
     <string name="welcome">Welcome !</string>
@@ -45,7 +48,10 @@
     <string name="edit_email">تعديل البريد الالكتروني</string>
     <string name="resend">اعادة ارسال</string>
     <string name="activation_code">كود التفعيل</string>
-    <string name="ok">أوك</string>
+    <string name="Activation_code_has_been_sent_check_your_email">تم ارسال كود التفعيل قم بفحص بريدك الالكتروني</string>
+    <string name="this_email_is_not_exist">هذا البريد الالكتروني غير موجود</string>
+    <string name="activation_code_has_been_resent">تم إعادة ارسال كود التفعيل</string>
+    <string name="invalid_activation_code">كود التفعيل غير صحيح</string>
 
 
     <string name="create_a_new_password">إنشاء كلمة مرور جديدة </string>
@@ -57,12 +63,19 @@
     <string name="password_updated">تعدلت كلمة المرور </string>
     <string name="your_password_has_been_updated">تم تعديل كلمة المرور الخاص بك بنجاح!</string>
 
+    <!-- Home screen strings -->
+    <string name="are_you_sure_you_want_to_control_this_ip">هل انت متاكد بانك تريد التحكم فى هذا البروتكول؟</string>
+
+
     <!-- Costing screen strings  -->
     <string name="costing">التكاليف</string>
     <string name="total_hours">أجمالي الساعات</string>
     <string name="price_per_hour">سعر الساعة الواحده</string>
     <string name="cost">التكلفه</string>
     <string name="total_cost">أجمالي التكلفه</string>
+    <string name="total_hours_mustnt_be_empty">أجمالي الساعات لا يجب ان تكون فارغة</string>
+    <string name="price_per_hour_mustnt_be_empty">سعر الساعة الواحدة لا يجب ان تكون فارغة</string>
+
 
     <!-- Setting screen strings  -->
     <string name="language">اللغة</string>
@@ -80,6 +93,10 @@
     <string name="allowed_notification">انك قمت بتفعيل الإشعارات.</string>
     <string name="channel_name3">Test Channel 3</string>
     <string name="channel_description3">This is a test channel at level a Emergency level, where lights, sound, and vibration are active.</string>
+    <string name="your_device_does_not_have_a_fingerprint_sensor">جهازك لا يحتوي على حساس بصمه الاصبع</string>
+    <string name="fingerprint_authentication_permission_not_enabled">Fingerprint authentication permission not enabled</string>
+    <string name="register_at_least_one_fingerprint_in_settings">سجل على الاقل بصمه اصبع واحده فى الاعدادات</string>
+    <string name="lock_screen_security_not_enabled_in_settings">Lock screen security not enabled in Settings</string>
 
     <!-- Profile screen strings  -->
     <string name="hello">مرحباً,</string>
@@ -87,6 +104,8 @@
     <string name="privacy_policy">سياسة الخصوصية</string>
     <string name="about_us">معلومات عنا</string>
     <string name="log_out">تسجيل خروج</string>
+    <string name="logout">تسجيل خروج</string>
+    <string name="would_you_like_to_logout">هل تريد تسجيل الخروج؟</string>
 
     <!-- Fragment screen strings  -->
     <string name="profile">حسابي</string>

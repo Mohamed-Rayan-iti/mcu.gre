@@ -20,18 +20,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mcu.LocationOwner.retailer_dashboard_Activity;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class login_Activity extends AppCompatActivity {
 
-    Button callsignup, login_btn, forgetpasswod;
-    ImageView loginlogo;
-    TextView welcomeback, sign_in_to_continue;
-    EditText email_login, passwordlogin;
+    Button callSignUp, login_btn, forgetPassword;
+    ImageView loginLogo;
+    TextView welcomeBack, sign_in_to_continue;
+    EditText email_login, password_login;
 
-    private CheckBox rememberme;
+    private CheckBox rememberMe;
     private ProgressBar progressBar;
 
 
-    //firebsae
+    //firebase
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -45,15 +47,15 @@ public class login_Activity extends AppCompatActivity {
 
 
         //HOOKS
-        callsignup = findViewById ( R.id.sign_up_log );
+        callSignUp = findViewById ( R.id.sign_up_log );
         login_btn = findViewById ( R.id.login_btn );
-        forgetpasswod = findViewById ( R.id.forget_password );
-        loginlogo = findViewById ( R.id.login_logo );
-        welcomeback = findViewById ( R.id.welcome_back );
+        forgetPassword = findViewById ( R.id.forget_password );
+        loginLogo = findViewById ( R.id.login_logo );
+        welcomeBack = findViewById ( R.id.welcome_back );
         sign_in_to_continue = findViewById ( R.id.sign_in_to_continue );
         email_login = findViewById ( R.id.email_log );
-        passwordlogin = findViewById ( R.id.password_log );
-        rememberme = findViewById ( R.id.remember_melogin );
+        password_login = findViewById ( R.id.password_log );
+        rememberMe = findViewById ( R.id.remember_melogin );
         progressBar = findViewById ( R.id.progressbar_login );
 
 
@@ -62,17 +64,17 @@ public class login_Activity extends AppCompatActivity {
 
 
         // link from login to sign up
-        callsignup.setOnClickListener (v -> {
+        callSignUp.setOnClickListener (v -> {
             Intent intent = new Intent ( login_Activity.this, sign_up_Activity.class );
 
             Pair[] pairs = new Pair[7];
 
-            pairs[0] = new Pair < View, String > ( loginlogo, "logo_image" );
-            pairs[1] = new Pair < View, String > ( welcomeback, "logo_text" );
+            pairs[0] = new Pair < View, String > ( loginLogo, "logo_image" );
+            pairs[1] = new Pair < View, String > ( welcomeBack, "logo_text" );
             pairs[2] = new Pair < View, String > ( sign_in_to_continue, "logo_desc" );
             pairs[3] = new Pair < View, String > ( email_login, "username_tran" );
-            pairs[4] = new Pair < View, String > ( passwordlogin, "password_tran" );
-            pairs[5] = new Pair < View, String > ( forgetpasswod, "forget_tran" );
+            pairs[4] = new Pair < View, String > ( password_login, "password_tran" );
+            pairs[5] = new Pair < View, String > ( forgetPassword, "forget_tran" );
             pairs[6] = new Pair < View, String > ( login_btn, "button_tran" );
 
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation ( login_Activity.this, pairs );
@@ -84,7 +86,7 @@ public class login_Activity extends AppCompatActivity {
 
             // link from login to forget password
 
-            forgetpasswod.setOnClickListener ( v -> {
+            forgetPassword.setOnClickListener ( v -> {
                 Intent intent = new Intent ( login_Activity.this, forgetpassword_Activity.class );
                 login_Activity.this.startActivity ( intent );
             } );
@@ -92,61 +94,56 @@ public class login_Activity extends AppCompatActivity {
 
 
         //onclick to login
-        findViewById ( R.id.login_btn ).setOnClickListener ( new View.OnClickListener ( ) {
-            @Override
-            public void onClick ( View v ) {
-                login_Activity.this.validationData ( );
-            }
-        } );
+        findViewById ( R.id.login_btn ).setOnClickListener (v -> login_Activity.this.validationData ( ));
 
     }
 
     private void validationData () {
-        String emaillogin = email_login.getText ( ).toString ( ).trim ( );
-        String passlogin = passwordlogin.getText ( ).toString ( ).trim ( );
+        String emailLogin = email_login.getText ( ).toString ( ).trim ( );
+        String passLogin = password_login.getText ( ).toString ( ).trim ( );
 
         //trust data
         // email name
-        if (emaillogin.isEmpty ( )) {
+        if (emailLogin.isEmpty ( )) {
             email_login.requestFocus ( );
             showAlert ( getString(R.string.email_is_required) );
             return;
         }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(emaillogin).matches()) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(emailLogin).matches()) {
             email_login.requestFocus();
             showAlert ( getString(R.string.invalid_email_address) );
             return;
         }
         // password
-        if (passlogin.isEmpty ( )) {
-            passwordlogin.requestFocus ( );
+        if (passLogin.isEmpty ( )) {
+            password_login.requestFocus ( );
             showAlert ( getString(R.string.password_is_required) );
             return;
 
         }
 
-        if (passlogin.length ( ) < 8) {
-            passwordlogin.requestFocus ( );
+        if (passLogin.length ( ) < 8) {
+            password_login.requestFocus ( );
             showAlert ( getString(R.string.password_must_be_8_digits) );
             return;
         }
 
 
-        signInWithfirebase ( emaillogin, passlogin );
+        signInWithfirebase ( emailLogin, passLogin );
     }
 
-    private void signInWithfirebase ( String emaillogin, String passlogin ) {
+    private void signInWithfirebase ( String emailLogin, String passLogin ) {
 
         progressBar.setVisibility ( View.VISIBLE );
 
-        firebaseAuth.signInWithEmailAndPassword ( emaillogin, passlogin )
+        firebaseAuth.signInWithEmailAndPassword ( emailLogin, passLogin )
                 .addOnCompleteListener ( task -> {
 
                     if (task.isSuccessful ( )) {
                         progressBar.setVisibility ( View.GONE );
 
-                        if (rememberme.isChecked ( )) {
+                        if (rememberMe.isChecked ( )) {
                             getSharedPreferences ( "Login", MODE_PRIVATE )
                                     .edit ( )
                                     .putBoolean ( "isLogin", true )
@@ -157,7 +154,7 @@ public class login_Activity extends AppCompatActivity {
 
                     } else {
                         progressBar.setVisibility ( View.GONE );
-                        showAlert ( "Error \n " + task.getException ( ).getMessage ( ) );
+                        showAlert ( "Error \n " + Objects.requireNonNull(task.getException()).getMessage() );
 
                     }
                 } );

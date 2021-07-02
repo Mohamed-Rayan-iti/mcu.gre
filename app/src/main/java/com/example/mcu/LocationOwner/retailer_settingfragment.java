@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.hardware.fingerprint.FingerprintManager;
+import android.media.RingtoneManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.se.omapi.Session;
@@ -256,6 +257,7 @@ public class retailer_settingfragment extends Fragment {
                 //the following 2 lines cause it to show up as popup message at the top in android 5 systems.
                 .setPriority(Notification.PRIORITY_MAX)  //could also be PRIORITY_HIGH.  needed for LOLLIPOP, M and N.  But not Oreo
                 .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})  //for the heads/pop up must have sound or vibrate
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)  //VISIBILITY_PRIVATE or VISIBILITY_SECRET
                 .setAutoCancel(true)   //allow auto cancel when pressed.
                 .setChannelId(id3)  //Oreo notifications
@@ -292,25 +294,25 @@ public class retailer_settingfragment extends Fragment {
             if (!fingerprintManager.isHardwareDetected()) {
                 isAllow = false;
                 switchFingerprint.setChecked(false);
-                showAlert("Your Device does not have a Fingerprint Sensor");
+                showAlert(getString(R.string.your_device_does_not_have_a_fingerprint_sensor));
             } else {
                 // Checks whether fingerprint permission is set on manifest
                 if (ActivityCompat.checkSelfPermission(retailer_settingfragment.this.referenceActivity, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
                     isAllow = false;
                     switchFingerprint.setChecked(false);
-                    showAlert("Fingerprint authentication permission not enabled");
+                    showAlert(getString(R.string.fingerprint_authentication_permission_not_enabled));
                 } else {
                     // Check whether at least one fingerprint is registered
                     if (!fingerprintManager.hasEnrolledFingerprints()) {
                         isAllow = false;
                         switchFingerprint.setChecked(false);
-                        showAlert("Register at least one fingerprint in Settings");
+                        showAlert(getString(R.string.register_at_least_one_fingerprint_in_settings));
                     } else {
                         // Checks whether lock screen security is enabled or not
                         if (!keyguardManager.isKeyguardSecure()) {
                             isAllow = false;
                             switchFingerprint.setChecked(false);
-                            showAlert("Lock screen security not enabled in Settings");
+                            showAlert(getString(R.string.lock_screen_security_not_enabled_in_settings));
                         }
                     }
                 }
@@ -324,10 +326,10 @@ public class retailer_settingfragment extends Fragment {
 
     void showAlert(String msg) {
         new AlertDialog.Builder(retailer_settingfragment.this.referenceActivity)
-                .setTitle("attention!")
+                .setTitle(R.string.attention)
                 .setMessage(msg)
                 .setIcon(R.drawable.ic_attention)
-                .setPositiveButton("Okay!", null)
+                .setPositiveButton(R.string.ok, null)
                 .create().show();
     }
 

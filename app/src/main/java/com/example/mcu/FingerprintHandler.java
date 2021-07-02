@@ -22,7 +22,7 @@ import static androidx.core.content.ContextCompat.getColor;
 public class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
 
 
-    private Context context;
+    private final Context context;
 
 
     // Constructor
@@ -67,7 +67,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
 
 
     public void update(String e, Boolean success){
-        TextView textView = (TextView) ((Activity)context).findViewById(R.id.errorText);
+        TextView textView = ((Activity)context).findViewById(R.id.errorText);
         textView.setText(e);
         if(success){
             textView.setTextColor(getColor(context,R.color.white));

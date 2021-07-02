@@ -1,5 +1,6 @@
 package com.example.mcu.LocationOwner;
 
+import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -13,6 +14,7 @@ import com.example.mcu.R;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.Locale;
+import java.util.Objects;
 
 public class retailer_dashboard_Activity extends AppCompatActivity {
 
@@ -23,13 +25,13 @@ public class retailer_dashboard_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_retailer_dashboard_);
+        setContentView(R.layout.activity_retailer_dashboard);
 
         String language= getSharedPreferences ( "Language", MODE_PRIVATE )
                 .getString("lang", "en");
         //Configuration Language
         Locale locale = new Locale(language);
-        locale.setDefault(locale);
+        Locale.setDefault(locale);
         Configuration configuration= new Configuration();
         configuration.locale=locale;
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics() );
@@ -50,27 +52,25 @@ public class retailer_dashboard_Activity extends AppCompatActivity {
         bottomMenu();
     }
 
+    @SuppressLint("NonConstantResourceId")
     private void bottomMenu() {
-        chipNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(int i) {
-                Fragment fragment =null;
-                switch (i){
-                    case R.id.bottom_nav_home:
-                        fragment = new retailer_homefragment();
-                        break;
-                    case R.id.bottom_nav_cost:
-                        fragment = new retailer_costfragment();
-                        break;
-                    case R.id.bottom_nav_Setting:
-                        fragment = new retailer_settingfragment();
-                        break;
-                        case R.id.bottom_nav_profile:
-                        fragment = new retailer_profilefragment ();
-                }
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).commit();
-
+        chipNavigationBar.setOnItemSelectedListener(i -> {
+            Fragment fragment =null;
+            switch (i){
+                case R.id.bottom_nav_home:
+                    fragment = new retailer_homefragment();
+                    break;
+                case R.id.bottom_nav_cost:
+                    fragment = new retailer_costfragment();
+                    break;
+                case R.id.bottom_nav_Setting:
+                    fragment = new retailer_settingfragment();
+                    break;
+                    case R.id.bottom_nav_profile:
+                    fragment = new retailer_profilefragment ();
             }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, Objects.requireNonNull(fragment)).commit();
+
         });
 
 

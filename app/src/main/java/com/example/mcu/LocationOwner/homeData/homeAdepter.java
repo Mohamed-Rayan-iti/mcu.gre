@@ -20,6 +20,7 @@ import com.example.mcu.Ip.And.Ordernum.model.ipandordermodel;
 import com.example.mcu.R;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class homeAdepter extends RecyclerView.Adapter<homeAdepter.ViewHolder> {
 
@@ -44,7 +45,7 @@ public class homeAdepter extends RecyclerView.Adapter<homeAdepter.ViewHolder> {
         holder.set_ips(list.get(position).getIp());
         holder.set_order_number(list.get(position).getOrder());
         holder.ic_setting.setOnClickListener(v -> {
-            showAlert(list.get(position).getIp());
+            showAlert(list.get(position).getIp(), String.valueOf(list.get(position).getOrder()), list.get(position).getId());
         });
     }
 
@@ -56,7 +57,7 @@ public class homeAdepter extends RecyclerView.Adapter<homeAdepter.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView ipnum;
         TextView ord_num;
-       ImageView ic_setting;
+        ImageView ic_setting;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,7 +71,7 @@ public class homeAdepter extends RecyclerView.Adapter<homeAdepter.ViewHolder> {
         void set_ips(String ip) {
 
 
-                ipnum.setText(String.valueOf(ip));
+            ipnum.setText(String.valueOf(ip));
 
 
         }
@@ -80,7 +81,8 @@ public class homeAdepter extends RecyclerView.Adapter<homeAdepter.ViewHolder> {
             ord_num.setText(String.valueOf(order));
         }
     }
-    void showAlert(String ip) {
+
+    void showAlert(String ip, String order, String id) {
         new AlertDialog.Builder(this.context)
                 .setTitle(ip)
                 .setMessage(R.string.are_you_sure_you_want_to_control_this_ip)
@@ -88,9 +90,13 @@ public class homeAdepter extends RecyclerView.Adapter<homeAdepter.ViewHolder> {
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent =new Intent(context,retailer_ip_settingActivity.class);
+                        Intent intent = new Intent(context, retailer_ip_settingActivity.class);
                         intent.putExtra("ip", ip);
+                        intent.putExtra("order", order);
+                        intent.putExtra("id", id);
+//                        Toast.makeText(context, id, Toast.LENGTH_LONG).show();
                         context.startActivity(intent);
+
                     }
                 })
                 .setNegativeButton(R.string.no, null)

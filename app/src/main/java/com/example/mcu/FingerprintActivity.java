@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.KeyguardManager;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
@@ -14,6 +15,8 @@ import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 import android.widget.TextView;
+
+import com.example.mcu.LocationOwner.retailer_dashboard_Activity;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
@@ -31,31 +34,23 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
 public class FingerprintActivity extends AppCompatActivity {
-
     private KeyStore keyStore;
     // Variable used for storing the key in the Android Keystore container
     private static final String KEY_NAME = "androidHive";
     private Cipher cipher;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerprint);
-
-
         // Initializing both Android Keyguard Manager and Fingerprint Manager
         KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
         FingerprintManager fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
-
-
         TextView textView = findViewById(R.id.errorText);
-
-
         // Check whether the device has a Fingerprint sensor.
-        if(!fingerprintManager.isHardwareDetected()){
+        if (!fingerprintManager.isHardwareDetected()) {
             /*
-            *
+             *
              * An error message will be displayed if the device does not contain the fingerprint hardware.
              * However if you plan to implement a default authentication method,
              * you can redirect the user to a default authentication activity from here.
@@ -63,36 +58,33 @@ public class FingerprintActivity extends AppCompatActivity {
              * Intent intent = new Intent(this, DefaultAuthenticationActivity.class);
              * startActivity(intent);
              */
-
             textView.setText(getString(R.string.your_device_does_not_have_a_fingerprint_sensor));
-        }else {
+            Intent intent = new Intent(this, retailer_dashboard_Activity.class);
+            startActivity(intent);
+        } else {
             // Checks whether fingerprint permission is set on manifest
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
                 textView.setText(getString(R.string.fingerprint_authentication_permission_not_enabled));
-            }else{
+            } else {
                 // Check whether at least one fingerprint is registered
                 if (!fingerprintManager.hasEnrolledFingerprints()) {
                     textView.setText(getString(R.string.register_at_least_one_fingerprint_in_settings));
-                }else{
+                } else {
                     // Checks whether lock screen security is enabled or not
                     if (!keyguardManager.isKeyguardSecure()) {
                         textView.setText(getString(R.string.lock_screen_security_not_enabled_in_settings));
-                    }else{
+                    } else {
                         generateKey();
-
-
                         if (cipherInit()) {
                             FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
                             FingerprintHandler helper = new FingerprintHandler(this);
                             helper.startAuth(fingerprintManager, cryptoObject);
-
                         }
                     }
                 }
             }
         }
     }
-
 
     @TargetApi(Build.VERSION_CODES.M)
     protected void generateKey() {
@@ -101,16 +93,12 @@ public class FingerprintActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
         KeyGenerator keyGenerator;
         try {
             keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
         } catch (NoSuchAlgorithmException | NoSuchProviderException e) {
             throw new RuntimeException("Failed to get KeyGenerator instance", e);
         }
-
-
         try {
             keyStore.load(null);
             keyGenerator.init(new
@@ -130,7 +118,6 @@ public class FingerprintActivity extends AppCompatActivity {
         }
     }
 
-
     @TargetApi(Build.VERSION_CODES.M)
     public boolean cipherInit() {
         try {
@@ -138,7 +125,6 @@ public class FingerprintActivity extends AppCompatActivity {
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             throw new RuntimeException("Failed to get Cipher", e);
         }
-
 
         try {
             keyStore.load(null);

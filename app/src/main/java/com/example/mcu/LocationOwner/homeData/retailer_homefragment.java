@@ -27,13 +27,9 @@ import java.util.List;
 
 public class retailer_homefragment extends Fragment {
     private ProgressBar progressBar;
-
-
     private homeAdepter adepter;
     private List<ipandordermodel> list;
-
     private FirebaseFirestore fireStore;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +37,6 @@ public class retailer_homefragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.retailer_homefragment, container, false);
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -61,9 +56,7 @@ public class retailer_homefragment extends Fragment {
         getData();
     }
 
-
     private void getData() {
-
         progressBar.setVisibility(View.VISIBLE);
         fireStore.collection("IP and order number")
                 .orderBy("time", Query.Direction.DESCENDING)

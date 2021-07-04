@@ -37,13 +37,11 @@ import static android.content.Context.MODE_PRIVATE;
  * create an instance of this fragment.
  */
 public class retailer_profilefragment extends Fragment {
-
     private TextView username;
     private CircleImageView userImage;
     private ProgressBar progressBar;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore fireStore;
-
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -98,20 +96,15 @@ public class retailer_profilefragment extends Fragment {
         username = view.findViewById(R.id.user_name_prof);
         userImage = view.findViewById(R.id.profile_image);
         progressBar = view.findViewById(R.id.progressbar_profile);
-
         firebaseAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
-
         getUserData();
-
 
         // link from profile to contact us
         view.findViewById(R.id.btn_contact_us).setOnClickListener(v -> sendmail());
 
-
         // link from profile to privacy
         view.findViewById(R.id.btn_privacy).setOnClickListener(v -> openPrivacy());
-
 
         // link from profile to about us
         view.findViewById(R.id.btn_about_us).setOnClickListener(v -> {
@@ -119,22 +112,16 @@ public class retailer_profilefragment extends Fragment {
             startActivity(intent);
         });
 
-
         // link from profile to log out
         view.findViewById(R.id.btn_log_out).setOnClickListener(v -> goLogOut());
-
-
     }
 
     private void goLogOut() {
-
         if (getActivity() != null)
-
             new AlertDialog.Builder(getActivity())
                     .setTitle(R.string.logout)
                     .setMessage(R.string.would_you_like_to_logout)
                     .setPositiveButton(R.string.yes, (dialog, which) -> {
-
                         // logout
                         getActivity().getSharedPreferences("Login", MODE_PRIVATE)
                                 .edit()
@@ -178,36 +165,20 @@ public class retailer_profilefragment extends Fragment {
 
 
     private void getUserData() {
-
         if (getActivity() != null) {
-
             if (firebaseAuth.getCurrentUser() != null) {
-
                 progressBar.setVisibility(View.VISIBLE);
-
                 String uID = firebaseAuth.getCurrentUser().getUid();
-
                 DocumentReference db = fireStore.collection("Users").document(uID);
-
                 db.get().addOnCompleteListener(task -> {
-
                     if (task.isSuccessful()) {
-
                         DocumentSnapshot snapshot = task.getResult();
-
                         assert snapshot != null;
-
                         String mailDB = snapshot.getString("E_mail");
-
                         String imageDB = snapshot.getString("image");
 
-
                         username.setText(mailDB);
-
-
                         assert imageDB != null;
-
-
                         if (!imageDB.equals("null")) {
                             Glide.with(getActivity())
                                     .load(imageDB)
@@ -216,23 +187,12 @@ public class retailer_profilefragment extends Fragment {
                         } else {
                             progressBar.setVisibility(View.GONE);
                         }
-
-
                     } else {
                         progressBar.setVisibility(View.GONE);
                         Toast.makeText(getActivity(), "Error in task \n" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-
                     }
                 });
-
-
             }
-
-
         }
-
-
     }
-
-
 }

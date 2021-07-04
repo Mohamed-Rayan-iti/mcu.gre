@@ -22,10 +22,8 @@ import com.example.mcu.R;
 public class retailer_costfragment extends Fragment {
     Activity referenceActivity;
     View parentHolder;
-
     Button calc;
     EditText totalHours, pricePerHour, totalCost;
-
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,28 +69,19 @@ public class retailer_costfragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         referenceActivity = getActivity();
-
         // Inflate the layout for this fragment
         parentHolder = inflater.inflate(R.layout.retailer_costfragment, container, false);
-
         calc = parentHolder.findViewById(R.id.btn_cost);
         totalHours = parentHolder.findViewById(R.id.total_hours);
         pricePerHour = parentHolder.findViewById(R.id.price_per_hour);
         totalCost = parentHolder.findViewById(R.id.total_cost);
-
-
-        calc.setOnClickListener(view -> {
-
-            inputValid();
-        });
-
+        calc.setOnClickListener(view -> inputValid());
         return parentHolder;
     }
 
     private void inputValid() {
         String inputTotalHours = totalHours.getText().toString();
         String inputPricePerHour = pricePerHour.getText().toString();
-
         if (inputTotalHours.isEmpty()) {
             // Alert
             showAlert(getString(R.string.total_hours_mustnt_be_empty));
@@ -103,9 +92,7 @@ public class retailer_costfragment extends Fragment {
             showAlert(getString(R.string.price_per_hour_mustnt_be_empty));
             return;
         }
-
         calcTotalCost(Integer.parseInt(inputTotalHours), Integer.parseInt(inputPricePerHour));
-
     }
 
     private void calcTotalCost(int inputTotalHours, int inputPricePerHour) {

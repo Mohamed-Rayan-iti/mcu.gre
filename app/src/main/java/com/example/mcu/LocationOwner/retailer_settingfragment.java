@@ -15,7 +15,6 @@ import android.hardware.fingerprint.FingerprintManager;
 import android.media.RingtoneManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.se.omapi.Session;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,6 @@ import com.example.mcu.R;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.Locale;
-import com.example.mcu.*;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -45,7 +43,6 @@ public class retailer_settingfragment extends Fragment {
     View parentHolder;
 
     // Notification
-    public static String id3 = "test_channel_03";
     NotificationManager notificationManager;
     int NotID = 1;
 
@@ -119,10 +116,7 @@ public class retailer_settingfragment extends Fragment {
         // SharedPreferences to set checked language
         String language = getActivity().getSharedPreferences("Language", MODE_PRIVATE)
                 .getString("lang", "en");
-        if (language.equals("ar"))
-            switchLang.setChecked(true);
-        else
-            switchLang.setChecked(false);
+        switchLang.setChecked(language.equals("ar"));
 
         // On Checked Change switch language
         switchLang.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -136,54 +130,32 @@ public class retailer_settingfragment extends Fragment {
         // SharedPreferences to set checked theme
         boolean isDarkMode = getActivity().getSharedPreferences("Theme", MODE_PRIVATE)
                 .getBoolean("selectedTheme", false);
-        if (isDarkMode)
-            switchTheme.setChecked(true);
-        else
-            switchTheme.setChecked(false);
+        switchTheme.setChecked(isDarkMode);
 
         // On Checked Change switch Themes
-        switchTheme.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked)
-                switchThemes(true);
-            else
-                switchThemes(false);
-        });
+        switchTheme.setOnCheckedChangeListener((buttonView, isChecked) -> switchThemes(isChecked));
         
         
 
         // SharedPreferences to set checked notification
         boolean isNotificationAllowed = getActivity().getSharedPreferences("Notification", MODE_PRIVATE)
                 .getBoolean("NotificationAllowed", false);
-        if (isNotificationAllowed)
-            switchNotification.setChecked(true);
-        else
-            switchNotification.setChecked(false);
+        switchNotification.setChecked(isNotificationAllowed);
 
         // On Checked Change switch Notification
-        switchNotification.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked)
-                allowNotificaiton(true);
-            else
-                allowNotificaiton(false);
-        });
+        switchNotification.setOnCheckedChangeListener((buttonView, isChecked) -> allowNotificaiton(isChecked));
 
 
         // SharedPreferences to set checked fingerprint lock
         boolean isFingerprintAllowed = getActivity().getSharedPreferences("Fingerprint", MODE_PRIVATE)
                 .getBoolean("FingerprintAllowed", false);
-        if (isFingerprintAllowed)
-            switchFingerprint.setChecked(true);
-        else
-            switchFingerprint.setChecked(false);
+        switchFingerprint.setChecked(isFingerprintAllowed);
 
         // On Checked Change switch Fingerprint
         switchFingerprint.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                    allowFingerprint(true);
-                else
-                    allowFingerprint(false);
+                allowFingerprint(isChecked);
             }
 
         });
@@ -243,17 +215,17 @@ public class retailer_settingfragment extends Fragment {
                 createChannel();
             }
             
-            showNotification("MCU Application", getString(R.string.allowed_notification));
+            showNotification(getString(R.string.allowed_notification),referenceActivity);
             
         }
     }
 
-    public void showNotification(String title, String description) {
-        Notification lollipop_notificaiton = new NotificationCompat.Builder(referenceActivity, id3)
+    public void showNotification(String description, Activity activity) {
+        Notification lollipop_notificaiton = new NotificationCompat.Builder(activity, "test_channel_03")
                 //.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))
                 .setSmallIcon(R.drawable.login_logo)
                 .setWhen(System.currentTimeMillis())  //When the event occurred, now, since lollipop_notificaiton are stored by time.
-                .setContentTitle(title)   //Title message top row.
+                .setContentTitle("MCU Application")   //Title message top row.
                 .setContentText(description)  //message when looking at the notification, second row
                 //the following 2 lines cause it to show up as popup message at the top in android 5 systems.
                 .setPriority(Notification.PRIORITY_MAX)  //could also be PRIORITY_HIGH.  needed for LOLLIPOP, M and N.  But not Oreo
@@ -261,7 +233,7 @@ public class retailer_settingfragment extends Fragment {
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)  //VISIBILITY_PRIVATE or VISIBILITY_SECRET
                 .setAutoCancel(true)   //allow auto cancel when pressed.
-                .setChannelId(id3)  //Oreo notifications
+                .setChannelId("test_channel_03")  //Oreo notifications
                 .build();  //finally build and return a Notification.
 
         //Show the notification
@@ -271,7 +243,7 @@ public class retailer_settingfragment extends Fragment {
 
     private void createChannel() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel mChannel = new NotificationChannel(id3,
+            NotificationChannel mChannel = new NotificationChannel("test_channel_03",
                     getString(R.string.channel_name3),  //name of the channel
                     NotificationManager.IMPORTANCE_HIGH);   //importance level
             // Configure the notification channel.

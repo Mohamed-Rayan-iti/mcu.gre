@@ -1,31 +1,26 @@
 package com.example.mcu.LocationOwner.homeData;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mcu.Ip.And.Ordernum.model.ipandordermodel;
 import com.example.mcu.R;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 public class homeAdepter extends RecyclerView.Adapter<homeAdepter.ViewHolder> {
 
-    private List<ipandordermodel> list;
-    private Context context;
+    private final List<ipandordermodel> list;
+    private final Context context;
 
     public homeAdepter(List<ipandordermodel> list, Context context) {
         this.list = list;
@@ -44,9 +39,7 @@ public class homeAdepter extends RecyclerView.Adapter<homeAdepter.ViewHolder> {
 
         holder.set_ips(list.get(position).getIp());
         holder.set_order_number(list.get(position).getOrder());
-        holder.ic_setting.setOnClickListener(v -> {
-            showAlert(list.get(position).getIp(), String.valueOf(list.get(position).getOrder()), list.get(position).getId());
-        });
+        holder.ic_setting.setOnClickListener(v -> showAlert(list.get(position).getIp(), String.valueOf(list.get(position).getOrder()), list.get(position).getId()));
     }
 
     @Override
@@ -54,7 +47,7 @@ public class homeAdepter extends RecyclerView.Adapter<homeAdepter.ViewHolder> {
         return list.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         TextView ipnum;
         TextView ord_num;
         ImageView ic_setting;
@@ -87,17 +80,14 @@ public class homeAdepter extends RecyclerView.Adapter<homeAdepter.ViewHolder> {
                 .setTitle(ip)
                 .setMessage(R.string.are_you_sure_you_want_to_control_this_ip)
                 .setIcon(R.drawable.ic_attention)
-                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(context, retailer_ip_settingActivity.class);
-                        intent.putExtra("ip", ip);
-                        intent.putExtra("order", order);
-                        intent.putExtra("id", id);
+                .setPositiveButton(R.string.yes, (dialog, which) -> {
+                    Intent intent = new Intent(context, retailer_ip_settingActivity.class);
+                    intent.putExtra("ip", ip);
+                    intent.putExtra("order", order);
+                    intent.putExtra("id", id);
 //                        Toast.makeText(context, id, Toast.LENGTH_LONG).show();
-                        context.startActivity(intent);
+                    context.startActivity(intent);
 
-                    }
                 })
                 .setNegativeButton(R.string.no, null)
                 .create().show();

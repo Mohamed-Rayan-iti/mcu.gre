@@ -1,10 +1,8 @@
 package com.example.mcu.Ip.And.Ordernum.model;
 
-import androidx.fragment.app.FragmentActivity;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
 
 public class ipandordermodel {
 

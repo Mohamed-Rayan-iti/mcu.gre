@@ -33,8 +33,6 @@ public class retailer_ip_settingActivity extends AppCompatActivity {
     ProgressBar progressBar;
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
-    retailer_settingfragment settingfragment = new retailer_settingfragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +95,6 @@ public class retailer_ip_settingActivity extends AppCompatActivity {
             // When the task is over it will print 00:00:00 there
             @SuppressLint("SetTextI18n")
             public void onFinish() {
-                settingfragment.showNotification("ip long has been finish",retailer_ip_settingActivity.this);
                 timeLift.setText("00:00:00");
             }
         }.start();
@@ -121,7 +118,6 @@ public class retailer_ip_settingActivity extends AppCompatActivity {
             // When the task is over it will print 00:00:00 there
             @SuppressLint("SetTextI18n")
             public void onFinish() {
-                settingfragment.showNotification("ip has been finish",retailer_ip_settingActivity.this);
                 timeLift.setText("00:00:00");
             }
         }.start();

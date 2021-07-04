@@ -52,9 +52,9 @@ public class retailer_ip_settingActivity extends AppCompatActivity {
         try {
             btnStart.setOnClickListener(v -> {
                 if (time.getText().toString().equals("")) {
-                    showAlert("Please Enter Your Desire Time");
+                    showAlert(getString(R.string.please_enter_your_desire_time));
                 } else if (speed.getText().toString().equals("")) {
-                    showAlert("Please Enter Your Desire Speed");
+                    showAlert(getString(R.string.please_enter_your_desire_speed));
                 } else {
                     progressBar.setVisibility(View.VISIBLE);
                     int Order = Integer.parseInt(order);

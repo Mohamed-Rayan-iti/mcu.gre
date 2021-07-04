@@ -40,7 +40,6 @@
     <string name="confirm_password_is_required">تاكيد كلمة المرور مطلوبة</string>
     <string name="Email_must_be_like">البريد الالكتروني لابد ان يكون مثل هذا المثال</string>
 
-
     <!-- Forget password screen strings  -->
     <string name="forget_password">نسيت كلمة المرور </string>
     <string name="provide_your_account_s_email_for_which_you_want_to_reset_your_password">أدخل البريد الإلكتروني لحسابك الذي تريد إعادة تعيين كلمة المرور الخاصة به</string>
@@ -52,7 +51,6 @@
     <string name="this_email_is_not_exist">هذا البريد الالكتروني غير موجود</string>
     <string name="activation_code_has_been_resent">تم إعادة ارسال كود التفعيل</string>
     <string name="invalid_activation_code">كود التفعيل غير صحيح</string>
-
 
     <string name="create_a_new_password">إنشاء كلمة مرور جديدة </string>
     <string name="your_identity_has_been_verified_set_your_new_password">تم التحقق من هويتك قم بتعيين كلمة المرور الجديدة الخاصة بك</string>
@@ -66,7 +64,6 @@
     <!-- Home screen strings -->
     <string name="are_you_sure_you_want_to_control_this_ip">هل انت متاكد بانك تريد التحكم فى هذا البروتكول؟</string>
 
-
     <!-- Costing screen strings  -->
     <string name="costing">التكاليف</string>
     <string name="total_hours">أجمالي الساعات</string>
@@ -75,7 +72,6 @@
     <string name="total_cost">أجمالي التكلفه</string>
     <string name="total_hours_mustnt_be_empty">أجمالي الساعات لا يجب ان تكون فارغة</string>
     <string name="price_per_hour_mustnt_be_empty">سعر الساعة الواحدة لا يجب ان تكون فارغة</string>
-
 
     <!-- Setting screen strings  -->
     <string name="language">اللغة</string>
@@ -119,6 +115,8 @@
     <string name="time">الوفت بالساعة</string>
     <string name="start">ابدأ</string>
     <string name="time_left">الوقت المتبقي</string>
+    <string name="please_enter_your_desire_time">الرجاء إدخال الوقت الذي تريده</string>
+    <string name="please_enter_your_desire_speed">الرجاء إدخال السرعة التي تريدها</string>
 
     <!-- About Us Screen strings -->
     <string name="project">عن المشروع</string>
@@ -134,6 +132,4 @@
     <string name="app_name">MCU</string>
     <string name="todo">TODO</string>
     <string name="ip_setting">IP Setting</string>
-
-
 </resources>

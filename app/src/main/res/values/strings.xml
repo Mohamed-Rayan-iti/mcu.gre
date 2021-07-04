@@ -39,7 +39,6 @@
     <string name="confirm_password_is_required">Confirm Password is required</string>
     <string name="Email_must_be_like">Email must be like this example</string>
 
-
     <!-- Forget password screen strings  -->
     <string name="forget_password">forget password </string>
     <string name="provide_your_account_s_email_for_which_you_want_to_reset_your_password">Provide your account\'s email for which you want to reset your password</string>
@@ -52,7 +51,6 @@
     <string name="this_email_is_not_exist">this email is not exist</string>
     <string name="activation_code_has_been_resent">Activation code has been resent</string>
     <string name="invalid_activation_code">Invalid Activation Code</string>
-
 
     <string name="create_a_new_password">Create a new password </string>
     <string name="your_identity_has_been_verified_set_your_new_password">your identity has been verified set your new password</string>
@@ -94,7 +92,6 @@
     <string name="register_at_least_one_fingerprint_in_settings">Register at least one fingerprint in Settings</string>
     <string name="lock_screen_security_not_enabled_in_settings">Lock screen security not enabled in Settings</string>
 
-
     <!-- Profile screen strings  -->
     <string name="hello">Hello,</string>
     <string name="contact_us">Contact Us</string>
@@ -118,7 +115,8 @@
     <string name="time_left">Time left</string>
     <string name="total_hours_mustnt_be_empty">Total hours mustn\'t be empty</string>
     <string name="price_per_hour_mustnt_be_empty">Price per hour mustn\'t be empty</string>
-
+    <string name="please_enter_your_desire_time">Please enter your desired time</string>
+    <string name="please_enter_your_desire_speed">Please enter your desired speed</string>
 
     <!-- About Us Screen strings -->
     <string name="project">About Project</string>
@@ -131,9 +129,7 @@
     <string name="an_application_that_takes_complete_control_of_wireless_devices_in_public_places_through_the_branch_manager_or_the_responsible_person">An application that takes complete control of wireless devices in public places through the branch manager or the responsible person.</string>
     <string name="ic_back">drawable/ic_back</string>
 
-
     <string name="app_name">MCU</string>
     <string name="todo">TODO</string>
     <string name="ip_setting">IP Setting</string>
-
 </resources>

@@ -94,9 +94,9 @@
     <string name="channel_name3">Test Channel 3</string>
     <string name="channel_description3">This is a test channel at level a Emergency level, where lights, sound, and vibration are active.</string>
     <string name="your_device_does_not_have_a_fingerprint_sensor">جهازك لا يحتوي على حساس بصمه الاصبع</string>
-    <string name="fingerprint_authentication_permission_not_enabled">Fingerprint authentication permission not enabled</string>
+    <string name="fingerprint_authentication_permission_not_enabled">لم يتم تمكين إذن المصادقة ببصمة الإصبع</string>
     <string name="register_at_least_one_fingerprint_in_settings">سجل على الاقل بصمه اصبع واحده فى الاعدادات</string>
-    <string name="lock_screen_security_not_enabled_in_settings">Lock screen security not enabled in Settings</string>
+    <string name="lock_screen_security_not_enabled_in_settings">لم يتم تمكين أمان شاشة القفل في الإعدادات</string>
 
     <!-- Profile screen strings  -->
     <string name="hello">مرحباً,</string>

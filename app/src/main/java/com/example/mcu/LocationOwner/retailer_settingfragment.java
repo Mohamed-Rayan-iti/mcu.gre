@@ -44,19 +44,18 @@ public class retailer_settingfragment extends Fragment {
     Activity referenceActivity;
     View parentHolder;
 
-    private static Integer count = 0;
+    // Notification
     public static String id3 = "test_channel_03";
     NotificationManager notificationManager;
     int NotID = 1;
 
+    // finger
     KeyguardManager keyguardManager;
     FingerprintManager fingerprintManager;
 
+    //
     SwitchMaterial switchLang, switchTheme, switchNotification, switchFingerprint;
 
-
-    //    Button btn_about, out ;
-    private Session session;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -236,13 +235,15 @@ public class retailer_settingfragment extends Fragment {
                 .apply();
         
         if (isAllow) {
+
             boolean isCreatedChannel = getActivity().getSharedPreferences("isCreatedChannel", MODE_PRIVATE)
                     .getBoolean("createdChannel", false);
+
             if (!isCreatedChannel) {
                 createChannel();
             }
             
-            showNotification("MCU Application",getString(R.string.allowed_notification));
+            showNotification("MCU Application", getString(R.string.allowed_notification));
             
         }
     }
@@ -282,6 +283,7 @@ public class retailer_settingfragment extends Fragment {
             mChannel.setShowBadge(true);
             mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
             notificationManager.createNotificationChannel(mChannel);
+
             getActivity().getSharedPreferences("isCreatedChannel", MODE_PRIVATE)
                     .edit()
                     .putBoolean("createdChannel", true)

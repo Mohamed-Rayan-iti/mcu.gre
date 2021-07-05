@@ -14,7 +14,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.mcu.Ip.And.Ordernum.model.control_ip_model;
-import com.example.mcu.LocationOwner.retailer_settingfragment;
 import com.example.mcu.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -81,7 +80,7 @@ public class retailer_ip_settingActivity extends AppCompatActivity {
 
     public void startTimeCountDown(long difference) {
         // Time is in millisecond so 50sec = 50000 I have used
-        // countdown Interveal is 1sec = 1000 I have used
+        // countdown Interval is 1sec = 1000 I have used
         new CountDownTimer(difference, 1000) {
             @SuppressLint("SetTextI18n")
             public void onTick(long millisUntilFinished) {
@@ -103,7 +102,7 @@ public class retailer_ip_settingActivity extends AppCompatActivity {
     public void startTimeCountDown() {
         Integer timeMillisecond = Integer.parseInt(time.getText().toString()) * 3600000;
         // Time is in millisecond so 50sec = 50000 I have used
-        // countdown Interveal is 1sec = 1000 I have used
+        // countdown Interval is 1sec = 1000 I have used
         new CountDownTimer(timeMillisecond, 1000) {
             @SuppressLint("SetTextI18n")
             public void onTick(long millisUntilFinished) {
@@ -124,17 +123,17 @@ public class retailer_ip_settingActivity extends AppCompatActivity {
     }
 
 
-    public void setControl(String docmentId, String ip, int order, int speed, int hour, String start_time, String end_time) {
+    public void setControl(String documentId, String ip, int order, int speed, int hour, String start_time, String end_time) {
         control_ip_model control_model = new control_ip_model();
         control_model.setEndTime(end_time);
         control_model.setHour(hour);
-        control_model.setId(docmentId);
+        control_model.setId(documentId);
         control_model.setIp(ip);
         control_model.setOrder(order);
         control_model.setStartTime(start_time);
         control_model.setSpeed(speed);
 
-        db.collection("control").document(docmentId).set(control_model).addOnSuccessListener(unused -> {
+        db.collection("control").document(documentId).set(control_model).addOnSuccessListener(unused -> {
             progressBar.setVisibility(View.GONE);
             startTimeCountDown();
         }).addOnFailureListener(e -> {
@@ -154,9 +153,9 @@ public class retailer_ip_settingActivity extends AppCompatActivity {
                 time.setText("" + control_ip_model.getHour());
                 try {
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
-                    DateFormat calenderFormater = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH);
+                    DateFormat calenderFormatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH);
                     Date date2 = simpleDateFormat.parse(control_ip_model.getEndTime());
-                    Date date1 = calenderFormater.parse(String.valueOf(Calendar.getInstance().getTime()));
+                    Date date1 = calenderFormatter.parse(String.valueOf(Calendar.getInstance().getTime()));
                     assert date1 != null;
                     if (date1.after(date2)) {
                         Toast.makeText(this, "Time Has Finished", Toast.LENGTH_LONG).show();

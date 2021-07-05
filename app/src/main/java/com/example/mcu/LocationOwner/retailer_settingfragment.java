@@ -18,7 +18,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -114,7 +113,7 @@ public class retailer_settingfragment extends Fragment {
         switchFingerprint = parentHolder.findViewById(R.id.finger_lock);
 
         // SharedPreferences to set checked language
-        String language = getActivity().getSharedPreferences("Language", MODE_PRIVATE)
+        String language = requireActivity().getSharedPreferences("Language", MODE_PRIVATE)
                 .getString("lang", "en");
         switchLang.setChecked(language.equals("ar"));
 
@@ -128,7 +127,7 @@ public class retailer_settingfragment extends Fragment {
 
         
         // SharedPreferences to set checked theme
-        boolean isDarkMode = getActivity().getSharedPreferences("Theme", MODE_PRIVATE)
+        boolean isDarkMode = requireActivity().getSharedPreferences("Theme", MODE_PRIVATE)
                 .getBoolean("selectedTheme", false);
         switchTheme.setChecked(isDarkMode);
 
@@ -138,33 +137,27 @@ public class retailer_settingfragment extends Fragment {
         
 
         // SharedPreferences to set checked notification
-        boolean isNotificationAllowed = getActivity().getSharedPreferences("Notification", MODE_PRIVATE)
+        boolean isNotificationAllowed = requireActivity().getSharedPreferences("Notification", MODE_PRIVATE)
                 .getBoolean("NotificationAllowed", false);
         switchNotification.setChecked(isNotificationAllowed);
 
         // On Checked Change switch Notification
-        switchNotification.setOnCheckedChangeListener((buttonView, isChecked) -> allowNotificaiton(isChecked));
+        switchNotification.setOnCheckedChangeListener((buttonView, isChecked) -> allowNotifications(isChecked));
 
 
         // SharedPreferences to set checked fingerprint lock
-        boolean isFingerprintAllowed = getActivity().getSharedPreferences("Fingerprint", MODE_PRIVATE)
+        boolean isFingerprintAllowed = requireActivity().getSharedPreferences("Fingerprint", MODE_PRIVATE)
                 .getBoolean("FingerprintAllowed", false);
         switchFingerprint.setChecked(isFingerprintAllowed);
 
         // On Checked Change switch Fingerprint
-        switchFingerprint.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                allowFingerprint(isChecked);
-            }
-
-        });
+        switchFingerprint.setOnCheckedChangeListener((buttonView, isChecked) -> allowFingerprint(isChecked));
 
         return parentHolder;
     }
 
     private void switchThemes(boolean theme) {
-        getActivity().getSharedPreferences("Theme", MODE_PRIVATE)
+        requireActivity().getSharedPreferences("Theme", MODE_PRIVATE)
                 .edit()
                 .putBoolean("selectedTheme", theme)
                 .apply();
@@ -180,14 +173,14 @@ public class retailer_settingfragment extends Fragment {
     }
 
     private void switchLanguage(String language) {
-        getActivity().getSharedPreferences("Language", MODE_PRIVATE)
+        requireActivity().getSharedPreferences("Language", MODE_PRIVATE)
                 .edit()
                 .putString("lang", language)
                 .apply();
 
         //Configuration Language
         Locale locale = new Locale(language);
-        locale.setDefault(locale);
+        Locale.setDefault(locale);
         Configuration configuration = new Configuration();
         configuration.locale = locale;
         getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
@@ -200,15 +193,15 @@ public class retailer_settingfragment extends Fragment {
 
     //creates a notification for lollipop with a popup/heads up message..
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public void allowNotificaiton(Boolean isAllow) {
-        getActivity().getSharedPreferences("Notification", MODE_PRIVATE)
+    public void allowNotifications(Boolean isAllow) {
+        requireActivity().getSharedPreferences("Notification", MODE_PRIVATE)
                 .edit()
                 .putBoolean("NotificationAllowed", isAllow)
                 .apply();
         
         if (isAllow) {
 
-            boolean isCreatedChannel = getActivity().getSharedPreferences("isCreatedChannel", MODE_PRIVATE)
+            boolean isCreatedChannel = requireActivity().getSharedPreferences("isCreatedChannel", MODE_PRIVATE)
                     .getBoolean("createdChannel", false);
 
             if (!isCreatedChannel) {
@@ -221,10 +214,10 @@ public class retailer_settingfragment extends Fragment {
     }
 
     public void showNotification(String description, Activity activity) {
-        Notification lollipop_notificaiton = new NotificationCompat.Builder(activity, "test_channel_03")
+        Notification lollipopNotification = new NotificationCompat.Builder(activity, "test_channel_03")
                 //.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher))
                 .setSmallIcon(R.drawable.login_logo)
-                .setWhen(System.currentTimeMillis())  //When the event occurred, now, since lollipop_notificaiton are stored by time.
+                .setWhen(System.currentTimeMillis())  //When the event occurred, now, since lollipopNotification are stored by time.
                 .setContentTitle("MCU Application")   //Title message top row.
                 .setContentText(description)  //message when looking at the notification, second row
                 //the following 2 lines cause it to show up as popup message at the top in android 5 systems.
@@ -237,7 +230,7 @@ public class retailer_settingfragment extends Fragment {
                 .build();  //finally build and return a Notification.
 
         //Show the notification
-        notificationManager.notify(NotID, lollipop_notificaiton);
+        notificationManager.notify(NotID, lollipopNotification);
         NotID--;
     }
 
@@ -256,7 +249,7 @@ public class retailer_settingfragment extends Fragment {
             mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
             notificationManager.createNotificationChannel(mChannel);
 
-            getActivity().getSharedPreferences("isCreatedChannel", MODE_PRIVATE)
+            requireActivity().getSharedPreferences("isCreatedChannel", MODE_PRIVATE)
                     .edit()
                     .putBoolean("createdChannel", true)
                     .apply();
@@ -292,7 +285,7 @@ public class retailer_settingfragment extends Fragment {
                 }
             }
         }
-        getActivity().getSharedPreferences("Fingerprint", MODE_PRIVATE)
+        requireActivity().getSharedPreferences("Fingerprint", MODE_PRIVATE)
                 .edit()
                 .putBoolean("FingerprintAllowed", isAllow)
                 .apply();

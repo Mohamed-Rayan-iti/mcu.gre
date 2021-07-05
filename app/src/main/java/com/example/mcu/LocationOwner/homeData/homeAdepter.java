@@ -7,11 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.mcu.Ip.And.Ordernum.model.ipandordermodel;
 import com.example.mcu.R;
 
@@ -27,7 +25,6 @@ public class homeAdepter extends RecyclerView.Adapter<homeAdepter.ViewHolder> {
         this.context = context;
     }
 
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,7 +33,6 @@ public class homeAdepter extends RecyclerView.Adapter<homeAdepter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         holder.set_ips(list.get(position).getIp());
         holder.set_order_number(list.get(position).getOrder());
         holder.ic_setting.setOnClickListener(v -> showAlert(list.get(position).getIp(), String.valueOf(list.get(position).getOrder()), list.get(position).getId()));
@@ -54,22 +50,14 @@ public class homeAdepter extends RecyclerView.Adapter<homeAdepter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             ic_setting = itemView.findViewById(R.id.icon_ip_setting);
             ipnum = itemView.findViewById(R.id.user_ip_home);
             ord_num = itemView.findViewById(R.id.order_num_home);
-
         }
 
         void set_ips(String ip) {
-
-
             ipnum.setText(String.valueOf(ip));
-
-
         }
-
-
         void set_order_number(int order) {
             ord_num.setText(String.valueOf(order));
         }
